@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_BUILD_TYPE "Release")
 
 cmake_policy(SET CMP0072 OLD)
-#
+
 #find_package(OpenGL REQUIRED)
 #find_package(GLUT REQUIRED)
 #if(OPENGL_FOUNG)
@@ -27,8 +27,10 @@ message(STATUS "Found OpenCV libraries is ${OpenCV_LIBS}")
 # include_directories(${OMPL_INCLUDE_DIRS} "/usr/include")
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories("./include")
-set(LIBS ${OpenCV_LIBS})
 
-add_executable(ompl_edu main.cpp src/rrt.cpp src/Map.cpp)
-target_link_libraries(ompl_edu PUBLIC ${LIBS})
+set(LIBS ${OpenCV_LIBS})
+set(SRCS src/RRT.cpp src/Map.cpp src/NearestNeighbors.cpp)
+
+add_executable(rrt main.cpp ${SRCS})
+target_link_libraries(rrt PUBLIC ${LIBS})
 
